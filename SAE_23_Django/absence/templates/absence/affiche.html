@@ -1,19 +1,16 @@
 {% extends 'absence/main.html' %}
 
 
-    <title>affichage {{absence.titre}}</title>
+    <title>affichage {{absence.etudiant}}</title>
 {% block content %}
 
-    <h1>Résumé du film {{absence.titre}}</h1>
-    <h2><a class="retour" href="/stream/index">Retour</a> </h2>
+    <h1>Élève: {{absence.etudiant}}</h1>
+    <h2><a class="retour" href="/absence/index">Retour</a> </h2>
 
-    <p class="ti">{{absence.titre}} paru le {{absence.date_parution}},un film d'{{absence.cat}} que vous pourriez regarder sur le site {{absence.site}}.</p>
+    <p class="ti">{{absence.etudiant}}dans le ou les cours de {{absence.cours}} l'absence est {{absence.cat}}.</p>
 
         {% load static %}
-    <p>
-        {{absence.resume}}
 
-    </p>
 <img src="{{absence.imaurl}}">
 
 {% endblock %}

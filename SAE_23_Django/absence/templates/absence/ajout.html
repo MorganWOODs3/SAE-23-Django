@@ -2,19 +2,19 @@
     <title>Formulaire de saisi</title>
 {% block content %}
 
-<h1>Saisie d'un nouveau film </h1>
-<h2><a href="/SAE_23_Django/index">Retour à la Bibliothèque</a> </h2>
+<h1>Saisie d'une nouvelle absence </h1>
+<h2><a href="/absence/index">Retour à la Bibliothèque des absences</a> </h2>
  <section>
     {% if id == None %}
-        <form method="post" action="/SAE_23_Django/revu/">
+        <form method="post" action="/absence/revu/">
      {% else %}
-       <form method="post" action="/SAE_23_Django/updaterevu/{{id}}/">
+       <form method="post" action="/absence/updaterevu/{{id}}/">
      {% endif %}
     {% csrf_token%}
     {{form.as_ul}}
-      <input type="submit" value="envoyer les données"/>
-     </form>
 
+      <input type="submit" value="envoyer les données"/>
+       </form>
  </section>
 
 {% endblock %}

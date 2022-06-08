@@ -2,16 +2,16 @@
     <title>index</title>
 {% block content %}
 
-<h1> Bienvenue sur la bibliothèque de film: </h1>
-<h2><a href="/stream/ajout/">Ajout d'un nouveau film</a> </h2>
+<h1> Bienvenue sur la bibliothèque des absence: </h1>
+<h2><a href="/absence/ajout/">Ajout d'une nouvelle absence</a> </h2>
 <ol>
     {% for l in liste %}
-    <li> <p class="ti">Titre: {{l.titre}}</p>
-            <p>Écrit par {{l.realisateur}} aparue le {{l.date_parution}}, dans la catégorie {{l.cat}} et d'une durée de {{l.dure}} minutes. Pour le résumé click sur affiche ->
+    <li> <p class="ti">Titre: {{l.etudiant}}</p>
+            <p>L'élève {{l.etudiant}} dans le ou les cours de {{l.cours}}, l'abense est {{l.cat}}
 
-            <a href="/stream/affiche/{{l.id}}/">Revu</a>
-            <a href="/stream/update/{{l.id}}/">Modifier</a>
-            <a href="/stream/delete/{{l.id}}/">Supprimer</a>
+            <a href="/absence/affiche/{{l.id}}/">Revu</a>
+            <a href="/absence/update/{{l.id}}/">Modifier</a>
+            <a href="/absence/delete/{{l.id}}/">Supprimer</a>
           </p>
         </li>
     {% endfor %}

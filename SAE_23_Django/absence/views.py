@@ -25,7 +25,7 @@ def revu(request):
     lform = AbsenceForm(request.POST)
     if lform.is_valid():
         absence = lform.save()
-        return HttpResponseRedirect("/SAE_23_Django/index")
+        return HttpResponseRedirect("/absence/index")
     else :
         return render(request, "absence/ajout.html", {"form": lform})
 
@@ -52,11 +52,21 @@ def updaterevu(request, id):
         absence = lform.save(commit = False)
         absence.id = id
         absence.save()
-        return HttpResponseRedirect("/SAE_23_Django/index")
+        return HttpResponseRedirect("/absence/index")
     else:
         return render(request, "absence/ajout.html", {"form": lform, "id": id})
 
 def delete(request, id):
     absence = models.Absence.objects.get(pk=id)
     absence.delete()
-    return HttpResponseRedirect("/SAE_23_Django/index")
+    return HttpResponseRedirect("/absence/index")
+
+def index(request):
+    if request.method =='POST':
+        form = AbsenceForm(request.POST, request.FILES)
+        if form.isvalid():
+            form.save()
+            return HttpResponseRedirect('/absence/')
+    else:
+        form =AbsenceForm()
+    return render(request, 'index.html', {'form': form,})
