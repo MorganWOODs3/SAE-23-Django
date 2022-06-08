@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'absence/main.html' %}
 
-</body>
-</html>
+
+    <title>affichage {{absence.titre}}</title>
+{% block content %}
+
+    <h1>Résumé du film {{absence.titre}}</h1>
+    <h2><a class="retour" href="/stream/index">Retour</a> </h2>
+
+    <p class="ti">{{absence.titre}} paru le {{absence.date_parution}},un film d'{{absence.cat}} que vous pourriez regarder sur le site {{absence.site}}.</p>
+
+        {% load static %}
+    <p>
+        {{absence.resume}}
+
+    </p>
+<img src="{{absence.imaurl}}">
+
+{% endblock %}
+
+<!-- Voici ma page Affiche des films ou on peut voir le résumer du film ainsi qu'une image de l'affiche du film.-->

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{%static 'css/index.css' %}">
+</head>
+
+<body>
+
+
+ <nav>
+     <a href="/absence/index">Bibliothèque</a>
+     <a href="/absence/ajout/">Ajouter un film</a>
+     <a href="/absence/">Accueil</a>
+
+ </nav>
+
+{% block content %}
+{% endblock %}
+<footer>Create by Morgan BOIS</footer>
+</body>
+</html>
+
+
+
+<!-- Voici le main aka le squelette, c'est la où mon css ainsi que mes navigations et mon footer sont attribué.
+
+Et grace au ''Block Content'', je peux donc transférer tout les configures du main et du css dans mes autres pages webs. :)-->
