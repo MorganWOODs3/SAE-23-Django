@@ -30,20 +30,20 @@ def revu(request):
         return render(request, "absence/ajout.html", {"form": lform})
 
 def centre(request):
-    liste = list(models.absence.objects.all())
+    liste = list(models.Absence.objects.all())
     return render(request, "absence/centre.html", {"liste": liste})
 def index(request):
-    liste = list(models.absence.objects.all())
+    liste = list(models.Absence.objects.all())
     return render(request, "absence/index.html", {"liste": liste})
 
 
 def affiche(request, id):
-    absence = models.absence.objects.get( pk = id)
+    absence = models.Absence.objects.get( pk = id)
     return render(request, "absence/affiche.html", {"absence": absence})
 
 def update(request, id):
-    absence = models.absence.objects.get(pk=id)
-    form = AbsenceForm(film.dico())
+    absence = models.Absence.objects.get(pk=id)
+    form = AbsenceForm(absence.dico())
     return render(request,"absence/ajout.html", {"form": form, "id": id})
 
 def updaterevu(request, id):
@@ -57,6 +57,6 @@ def updaterevu(request, id):
         return render(request, "absence/ajout.html", {"form": lform, "id": id})
 
 def delete(request, id):
-    absence = models.absence.objects.get(pk=id)
+    absence = models.Absence.objects.get(pk=id)
     absence.delete()
     return HttpResponseRedirect("/SAE_23_Django/index")

@@ -1,0 +1,21 @@
+{% extends 'absence/main.html' %}
+    <title>Formulaire de saisi</title>
+{% block content %}
+
+<h1>Saisie d'un nouveau film </h1>
+<h2><a href="/SAE_23_Django/index">Retour à la Bibliothèque</a> </h2>
+ <section>
+    {% if id == None %}
+        <form method="post" action="/SAE_23_Django/revu/">
+     {% else %}
+       <form method="post" action="/SAE_23_Django/updaterevu/{{id}}/">
+     {% endif %}
+    {% csrf_token%}
+    {{form.as_ul}}
+      <input type="submit" value="envoyer les données"/>
+     </form>
+
+ </section>
+
+{% endblock %}
+<!-- Voici ma page Ajout comme son nom l'indique, c'est pour ajouter un film. Et c'est tout.-->
