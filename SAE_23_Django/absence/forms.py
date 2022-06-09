@@ -5,13 +5,15 @@ from . import models
 class AbsenceForm(ModelForm):
     class Meta:
         model = models.Absence
-        fields = ('etudiant', 'cours','cat','imaurl','photo')
+        fields = ('etudiant', 'cours','cat','just',)
         labels = {
             'etudiant': _('Etudiant'),
             'cours': _('Cours'),
             'cat': _('Catégorie'),
-            'imaurl': _('Image avec Url'),
-            'photo':_('photo')
+            'just': _('Justification'),
+
+
+
 
 
         }

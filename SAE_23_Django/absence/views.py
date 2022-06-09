@@ -36,7 +36,6 @@ def index(request):
     liste = list(models.Absence.objects.all())
     return render(request, "absence/index.html", {"liste": liste})
 
-
 def affiche(request, id):
     absence = models.Absence.objects.get( pk = id)
     return render(request, "absence/affiche.html", {"absence": absence})
@@ -61,12 +60,3 @@ def delete(request, id):
     absence.delete()
     return HttpResponseRedirect("/absence/index")
 
-def index(request):
-    if request.method =='POST':
-        form = AbsenceForm(request.POST, request.FILES)
-        if form.isvalid():
-            form.save()
-            return HttpResponseRedirect('/absence/')
-    else:
-        form =AbsenceForm()
-    return render(request, 'index.html', {'form': form,})
