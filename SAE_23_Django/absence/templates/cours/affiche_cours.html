@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>affiche_cours</title>
-</head>
-<body>
-<h1>totototototo</h1>
-</body>
-</html>
+{% extends 'absence/main.html' %}
+
+
+    <title>affichage {{cours.affiche_cours}}</title>
+{% block content %}
+
+    <h1>Élève: {{absence.etudiant}}</h1>
+    <h2><a class="retour" href="/absence/index">Retour</a> </h2>
+
+    <p class="ti">{{absence.etudiant}}dans le ou les cours de {{absence.cours}} l'absence est {{absence.cat}}, et la justification est {{absence.just}}</p>
+
+        {% load static %}
+
+
+
+
+{% endblock %}
