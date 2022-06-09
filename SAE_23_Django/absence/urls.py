@@ -19,6 +19,7 @@ urlpatterns = [
     path("cours/update_cours/<int:id>/",views.update_cours),
     path("cours/updaterevu_cours/<int:id>/", views.updaterevu_cours),
     path("cours/delete_cours/<int:id>/",views.delete_cours),
+    path("cours/revu_cours/",views.revu_cours),
 
     path('enseignant/', views.enseignant),
     path('enseignant/affiche_enseignant/<int:id>/', views.affiche_enseignant),

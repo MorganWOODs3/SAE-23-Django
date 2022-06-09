@@ -80,6 +80,14 @@ def ajout_cours(request):
         form = CoursForm()
         return render(request, "cours/ajout_cours.html", {"form": form})
 
+def revu_cours(request):
+    lform = CoursForm(request.POST)
+    if lform.is_valid():
+        cours = lform.save()
+        return HttpResponseRedirect("/cours/revu_cours")
+    else :
+        return render(request, "cours/ajout_cours.html", {"form": lform})
+
 def affiche_cours(request, id):
     cours = models.Cours.objects.get( pk = id)
     return render(request, "cours/affiche_cours.html", {"absence": absence})

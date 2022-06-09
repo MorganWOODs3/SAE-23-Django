@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'absence/main.html' %}
 
-</body>
-</html>
+{% block content %}
+    <a href="/cours/index_cours">Index</a>
+    <a href="/cours/ajout_cours">Ajout</a>
+    <a href="/cours/affiche_cours">Liste</a>
+
+{% endblock %}
