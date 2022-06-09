@@ -3,12 +3,19 @@ from . import views
 
 urlpatterns = [
     path('absence/', views.absence),
-    path("revu/",views.revu),
-    path("ajout/",views.ajout),
-    path("index",views.index),
+    path("absence/revu/",views.revu),
+    path("absence/ajout/",views.ajout),
+    path("absence/index",views.index),
     path("",views.centre),
-    path("affiche/<int:id>/", views.affiche),
-    path("update/<int:id>/",views.update),
-    path("updaterevu/<int:id>/", views.updaterevu),
-    path("delete/<int:id>/",views.delete),
+    path("absence/affiche/<int:id>/", views.affiche),
+    path("absence/update/<int:id>/",views.update),
+    path("absence/updaterevu/<int:id>/", views.updaterevu),
+    path("absence/delete/<int:id>/",views.delete),
+
+    path('cours/', views.cours),
+    path('cours/affiche_cours/', views.affiche_cours),
+
+    path('enseignant/', views.enseignant),
+    path('etudiant/', views.etudiant),
+    path('groupetu/', views.groupetu),
 ]

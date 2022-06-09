@@ -4,7 +4,17 @@ from django.shortcuts import render
 
 def absence(request):
     return render(request, "absence/absence.html")
+def cours(request):
+    return render(request, "cours/index_cours.html")
+def enseignant(request):
+    return render(request, "enseignant/affiche_enseignant.html")
+def etudiant(request):
+    return render(request, "etudiant/affiche_etudiant.html")
+def groupetu(request):
+    return render(request, "groupetu/affiche_groupetu.html")
 
+def affiche_cours(request):
+    return render(request, "cours/affiche_cours.html")
 
 #################################################################
 
@@ -38,7 +48,7 @@ def index(request):
 
 def affiche(request, id):
     absence = models.Absence.objects.get( pk = id)
-    return render(request, "absence/affiche.html", {"absence": absence})
+    return render(request, "absence/affiche_groupetu.html", {"absence": absence})
 
 def update(request, id):
     absence = models.Absence.objects.get(pk=id)

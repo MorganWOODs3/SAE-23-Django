@@ -34,10 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'absence.apps.AbsenceConfig',
-    'cours.apps.CoursConfig',
-    'enseignant.apps.EnseignantConfig',
-    'etudiant.apps.EtudiantConfig',
-    'groupetu.apps.GroupetuConfig',
+
 
     'django.contrib.admin',
     'django.contrib.auth',
