@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'absence/main.html' %}
+    <title>Formulaire de saisi</title>
+{% block content %}
 
-</body>
-</html>
+<a href="/groupetu/index_groupetu">Index</a>
+    <a href="/groupetu/ajout_groupetu">Ajout</a>
+    <a href="/groupetu/affiche_groupetu">Liste</a>
+
+<h1>Saisie d'un nouveau cours </h1>
+<h2><a href="/groupetu/index_groupetu">Retour à la liste des cours</a> </h2>
+ <section>
+    {% if id == None %}
+        <form method="post" action="/groupetu/revu_groupetu/">
+     {% else %}
+       <form method="post" action="/cours/updaterevu_groupetu/{{id}}/">
+     {% endif %}
+    {% csrf_token%}
+    {{form.as_ul}}
+
+      <input type="submit" value="envoyer les données"/>
+       </form>
+  </section>
+
+{% endblock %}
+<!-- Voici ma page Ajout comme son nom l'indique, c'est pour ajouter un film. Et c'est tout.-->

@@ -47,20 +47,15 @@ class Etudiant(models.Model):
     def dico(self):
         return {"nom" : self.nom, "prenom" : self.prenom,"email" : self.email,"group" : self.group},{"photo" : self.photo}
 
-classe = [
-    ('RT111', 'RT111'),
-    ('RT112', 'RT112'),
-    ('RT121', 'RT122'),
-    ('RT131', 'RT132'),
-]
+
 
 class Groupetu(models.Model):
-    classe = models.CharField(max_length=30, choices=classe)
+    groupe = models.CharField(max_length=100)
     def __str__(self):
-        chaine = f"{self.classe}"
+        chaine = f"{self.groupe}"
         return chaine
     def dico(self):
-        return {"classe": self.classe}
+        return {"classe": self.groupe}
 
 
 class Enseignant(models.Model):
@@ -81,13 +76,13 @@ class Cours(models.Model):
     date = models.DateField(blank=True, null=True)
     duree = models.IntegerField(blank=False)
     enseignant = models.CharField(max_length=100)
-    classe = models.CharField(max_length=30, choices=classe)
+    group = models.CharField(max_length=30, choices=group)
 
 
 
     def __str__(self):
-        chaine = f"titre du cours: {self.titre}le {self.date} d'une duree de {self.duree}, dans le groupe {self.classe}"
+        chaine = f"titre du cours: {self.titre}le {self.date} d'une duree de {self.duree}, dans le groupe {self.group}"
         return chaine
 
     def dico(self):
-        return {"titre" : self.titre, "date" : self.date,"duree" : self.duree,"classe" : self.classe}
+        return {"titre" : self.titre, "date" : self.date,"duree" : self.duree,"classe" : self.group , "enseignant" : self.enseignant}

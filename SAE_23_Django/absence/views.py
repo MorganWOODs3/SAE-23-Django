@@ -2,19 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def absence(request):
-    return render(request, "absence/absence.html")
-def cours(request):
-    return render(request, "cours/index_cours.html")
-def enseignant(request):
-    return render(request, "enseignant/affiche_enseignant.html")
-def etudiant(request):
-    return render(request, "etudiant/affiche_etudiant.html")
-def groupetu(request):
-    return render(request, "groupetu/affiche_groupetu.html")
-
-def affiche_cours(request):
-    return render(request, "cours/affiche_cours.html")
 
 #################################################################
 
@@ -49,7 +36,7 @@ def index(request):
 
 def affiche(request, id):
     absence = models.Absence.objects.get( pk = id)
-    return render(request, "absence/affiche_groupetu.html", {"absence": absence})
+    return render(request, "absence/affiche.html", {"absence": absence})
 
 def update(request, id):
     absence = models.Absence.objects.get(pk=id)
@@ -84,13 +71,13 @@ def revu_cours(request):
     lform = CoursForm(request.POST)
     if lform.is_valid():
         cours = lform.save()
-        return HttpResponseRedirect("/cours/revu_cours")
+        return HttpResponseRedirect("/cours/index_cours")
     else :
         return render(request, "cours/ajout_cours.html", {"form": lform})
 
 def affiche_cours(request, id):
     cours = models.Cours.objects.get( pk = id)
-    return render(request, "cours/affiche_cours.html", {"absence": absence})
+    return render(request, "cours/affiche_cours.html", {"cours": cours})
 
 def index_cours(request):
     liste = list(models.Cours.objects.all())
@@ -102,19 +89,19 @@ def update_cours(request, id):
     return render(request,"cours/ajout_cours.html", {"form": form, "id": id})
 
 def updaterevu_cours(request, id):
-    lform = AbsenceForm(request.POST)
+    lform = CoursForm(request.POST)
     if lform.is_valid():
         cours = lform.save(commit = False)
         cours.id = id
         cours.save()
-        return HttpResponseRedirect("cours/index_cours.html")
+        return HttpResponseRedirect("/cours/index_cours")
     else:
         return render(request, "cours/ajout_cours.html", {"form": lform, "id": id})
 
 def delete_cours(request, id):
     cours = models.Cours.objects.get(pk=id)
     cours.delete()
-    return HttpResponseRedirect("cours/index_cours.html")
+    return HttpResponseRedirect("/cours/index_cours")
 
 
 #############################################################################
@@ -129,12 +116,21 @@ def ajout_enseignant(request):
 
 def affiche_enseignant(request, id):
     enseignant = models.Enseignant.objects.get(pk=id)
-    return render(request, "enseignant/affiche_enseignant.html", {"absence": absence})
+    return render(request, "enseignant/affiche_enseignant.html", {"enseignant": enseignant})
 
 
 def index_enseignant(request):
     liste = list(models.Enseignant.objects.all())
     return render(request, "enseignant/index_enseignant.html", {"liste": liste})
+
+def revu_enseignant(request):
+    lform = EnseignantForm(request.POST)
+    if lform.is_valid():
+        enseignant = lform.save()
+        return HttpResponseRedirect("/enseignant/index_enseignant")
+    else :
+        return render(request, "enseignant/ajout_enseignant.html", {"form": lform})
+
 
 def update_enseignant(request, id):
     enseignant = models.Enseignant.objects.get(pk=id)
@@ -147,14 +143,14 @@ def updaterevu_enseignant(request, id):
         enseignant = lform.save(commit = False)
         enseignant.id = id
         enseignant.save()
-        return HttpResponseRedirect("enseignant/index_enseignant.html")
+        return HttpResponseRedirect("/enseignant/index_enseignant")
     else:
         return render(request, "enseignant/ajout_enseignant.html", {"form": lform, "id": id})
 
 def delete_enseignant(request, id):
     enseignant = models.Enseignant.objects.get(pk=id)
     enseignant.delete()
-    return HttpResponseRedirect("enseignant/index_enseignant.html")
+    return HttpResponseRedirect("/enseignant/index_enseignant")
 
 
 ###############################################################################
@@ -169,12 +165,22 @@ def ajout_etudiant(request):
 
 def affiche_etudiant(request, id):
     etudiant = models.Etudiant.objects.get(pk=id)
-    return render(request, "etudiant/affiche_etudiant.html", {"absence": absence})
+    return render(request, "etudiant/affiche_etudiant.html", {"etudiant": etudiant})
 
 
 def index_etudiant(request):
     liste = list(models.Etudiant.objects.all())
     return render(request, "etudiant/index_etudiant.html", {"liste": liste})
+
+def revu_etudiant(request):
+    lform = EtudiantForm(request.POST)
+    if lform.is_valid():
+        etudiant = lform.save()
+        return HttpResponseRedirect("/etudiant/index_etudiant")
+    else :
+        return render(request, "etudiant/ajout_etudiant.html", {"form": lform})
+
+
 
 def update_etudiant(request, id):
     etudiant = models.Etudiant.objects.get(pk=id)
@@ -187,14 +193,14 @@ def updaterevu_etudiant(request, id):
         etudiant = lform.save(commit = False)
         etudiant.id = id
         etudiant.save()
-        return HttpResponseRedirect("etudiant/index_etudiant.html")
+        return HttpResponseRedirect("/etudiant/index_etudiant")
     else:
         return render(request, "etudiant/ajout_etudiant.html", {"form": lform, "id": id})
 
 def delete_etudiant(request, id):
     etudiant = models.Etudiant.objects.get(pk=id)
     etudiant.delete()
-    return HttpResponseRedirect("etudiant/index_etudiant.html")
+    return HttpResponseRedirect("/etudiant/index_etudiant")
 
 ##############################################################################
 
@@ -210,12 +216,20 @@ def ajout_groupetu(request):
 
 def affiche_groupetu(request, id):
     groupetu = models.Groupetu.objects.get(pk=id)
-    return render(request, "groupetu/affiche_groupetu.html", {"absence": absence})
+    return render(request, "groupetu/affiche_groupetu.html", {"groupetu": groupetu})
 
 
 def index_groupetu(request):
     liste = list(models.Groupetu.objects.all())
     return render(request, "groupetu/index_groupetu.html", {"liste": liste})
+
+def revu_groupetu(request):
+    lform = GroupetuForm(request.POST)
+    if lform.is_valid():
+        groupetu = lform.save()
+        return HttpResponseRedirect("/groupetu/index_groupetu")
+    else :
+        return render(request, "groupetu/ajout_groupetu.html", {"form": lform})
 
 def update_groupetu(request, id):
     groupetu = models.Groupetu.objects.get(pk=id)
@@ -228,12 +242,12 @@ def updaterevu_groupetu(request, id):
         groupetu = lform.save(commit = False)
         groupetu.id = id
         groupetu.save()
-        return HttpResponseRedirect("groupetu/index_groupetu.html")
+        return HttpResponseRedirect("/groupetu/index_groupetu")
     else:
         return render(request, "groupetu/ajout_groupetu.html", {"form": lform, "id": id})
 
 def delete_groupetu(request, id):
     groupetu = models.Groupetu.objects.get(pk=id)
     groupetu.delete()
-    return HttpResponseRedirect("groupetu/index_groupetu.html")
+    return HttpResponseRedirect("/groupetu/index_groupetu")
 
