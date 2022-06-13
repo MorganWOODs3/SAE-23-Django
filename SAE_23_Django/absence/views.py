@@ -2,19 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def absence(request):
-    return render(request, "absence/absence.html")
-def cours(request):
-    return render(request, "cours/index_cours.html")
-def enseignant(request):
-    return render(request, "enseignant/affiche_enseignant.html")
-def etudiant(request):
-    return render(request, "etudiant/affiche_etudiant.html")
-def groupetu(request):
-    return render(request, "groupetu/affiche_groupetu.html")
-
-def affiche_cours(request):
-    return render(request, "cours/affiche_cours.html")
 
 #################################################################
 
@@ -49,7 +36,7 @@ def index(request):
 
 def affiche(request, id):
     absence = models.Absence.objects.get( pk = id)
-    return render(request, "absence/affiche_groupetu.html", {"absence": absence})
+    return render(request, "absence/affiche.html", {"absence": absence})
 
 def update(request, id):
     absence = models.Absence.objects.get(pk=id)
@@ -84,13 +71,13 @@ def revu_cours(request):
     lform = CoursForm(request.POST)
     if lform.is_valid():
         cours = lform.save()
-        return HttpResponseRedirect("/cours/revu_cours")
+        return HttpResponseRedirect("/cours/index_cours")
     else :
         return render(request, "cours/ajout_cours.html", {"form": lform})
 
 def affiche_cours(request, id):
     cours = models.Cours.objects.get( pk = id)
-    return render(request, "cours/affiche_cours.html", {"absence": absence})
+    return render(request, "cours/affiche_cours.html", {"cours": cours})
 
 def index_cours(request):
     liste = list(models.Cours.objects.all())
@@ -102,19 +89,19 @@ def update_cours(request, id):
     return render(request,"cours/ajout_cours.html", {"form": form, "id": id})
 
 def updaterevu_cours(request, id):
-    lform = AbsenceForm(request.POST)
+    lform = CoursForm(request.POST)
     if lform.is_valid():
         cours = lform.save(commit = False)
         cours.id = id
         cours.save()
-        return HttpResponseRedirect("cours/index_cours.html")
+        return HttpResponseRedirect("/cours/index_cours")
     else:
         return render(request, "cours/ajout_cours.html", {"form": lform, "id": id})
 
 def delete_cours(request, id):
     cours = models.Cours.objects.get(pk=id)
     cours.delete()
-    return HttpResponseRedirect("cours/index_cours.html")
+    return HttpResponseRedirect("/cours/index_cours")
 
 
 #############################################################################
@@ -129,7 +116,7 @@ def ajout_enseignant(request):
 
 def affiche_enseignant(request, id):
     enseignant = models.Enseignant.objects.get(pk=id)
-    return render(request, "enseignant/affiche_enseignant.html", {"absence": absence})
+    return render(request, "enseignant/affiche_enseignant.html", {"enseignant": enseignant})
 
 
 def index_enseignant(request):
@@ -169,7 +156,7 @@ def ajout_etudiant(request):
 
 def affiche_etudiant(request, id):
     etudiant = models.Etudiant.objects.get(pk=id)
-    return render(request, "etudiant/affiche_etudiant.html", {"absence": absence})
+    return render(request, "etudiant/affiche_etudiant.html", {"etudiant": etudiant})
 
 
 def index_etudiant(request):
@@ -210,7 +197,7 @@ def ajout_groupetu(request):
 
 def affiche_groupetu(request, id):
     groupetu = models.Groupetu.objects.get(pk=id)
-    return render(request, "groupetu/affiche_groupetu.html", {"absence": absence})
+    return render(request, "groupetu/affiche_groupetu.html", {"groupetu": groupetu})
 
 
 def index_groupetu(request):

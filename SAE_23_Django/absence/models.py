@@ -90,4 +90,4 @@ class Cours(models.Model):
         return chaine
 
     def dico(self):
-        return {"titre" : self.titre, "date" : self.date,"duree" : self.duree,"classe" : self.classe}
+        return {"titre" : self.titre, "date" : self.date,"duree" : self.duree,"classe" : self.classe , "enseignant" : self.enseignant}

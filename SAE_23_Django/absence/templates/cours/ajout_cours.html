@@ -12,14 +12,14 @@
     {% if id == None %}
         <form method="post" action="/cours/revu_cours/">
      {% else %}
-       <form method="post" action="/absence/updaterevu_cours/{{id}}/">
+       <form method="post" action="/cours/updaterevu_cours/{{id}}/">
      {% endif %}
     {% csrf_token%}
     {{form.as_ul}}
 
       <input type="submit" value="envoyer les données"/>
        </form>
- </section>
+  </section>
 
 {% endblock %}
 <!-- Voici ma page Ajout comme son nom l'indique, c'est pour ajouter un film. Et c'est tout.-->

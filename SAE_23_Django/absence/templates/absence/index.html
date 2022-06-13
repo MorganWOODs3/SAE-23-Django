@@ -2,12 +2,12 @@
     <title>index</title>
 {% block content %}
 
-<h1> Bienvenue sur la bibliothèque des absence: </h1>
+<h1> Bienvenue sur la bibliothèque des absences: </h1>
 <h2><a href="/absence/ajout/">Ajout d'une nouvelle absence</a> </h2>
 <ol>
     {% for l in liste %}
-    <li> <p class="ti">Titre: {{l.etudiant}}</p>
-            <p>L'élève {{l.etudiant}} dans le ou les cours de {{l.cours}}, l'abense est {{l.cat}}
+    <li> <p class="ti">Absence de : {{l.etudiant}}</p>
+            <p>L'élève {{l.etudiant}} dans le cours de {{l.cours}}, l'abense est {{l.cat}}
 
             <a href="/absence/affiche/{{l.id}}/">Revu</a>
             <a href="/absence/update/{{l.id}}/">Modifier</a>
