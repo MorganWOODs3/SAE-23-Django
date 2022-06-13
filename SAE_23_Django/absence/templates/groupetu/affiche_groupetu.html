@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'absence/main.html' %}
 
-</body>
-</html>
+
+    <title>affichage {{cours.affiche_cours}}</title>
+{% block content %}
+
+<a href="/groupetu/index_groupetu">Index</a>
+    <a href="/groupetu/ajout_groupetu">Ajout</a>
+    <a href="/groupetu/affiche_groupetu">Liste</a>
+
+    <h1>Élève: {{cours.titre}}</h1>
+    <h2><a class="retour" href="/groupetu/index_groupetu">Retour</a> </h2>
+
+    <p class="ti">Dans le ou les cours de {{cours.titre}} le {{cours.date}} d'une duree de {{cours.duree}}, avec l'enseignant {{cours.enseignant}}, de la classe {{cours.classe}}</p>
+
+        {% load static %}
+
+
+
+
+{% endblock %}

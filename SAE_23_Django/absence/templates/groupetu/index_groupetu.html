@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'absence/main.html' %}
 
-</body>
-</html>
+{% block content %}
+    <a href="/groupetu/index_groupetu">Index</a>
+    <a href="/groupetu/ajout_groupetu">Ajout</a>
+    <a href="/groupetu/affiche_groupetu">Liste</a>
+
+
+<h2><a href="/groupetu/ajout_groupetu/">Ajout d'un nouveau cours</a> </h2>
+<ol>
+    {% for l in liste %}
+    <li> <p class="ti">Titre: {{l.titre}}</p>
+            <p>Dans le cours de {{l.titre}} à la date {{l.date}} d'une durée de {{l.duree}}, avec l'enseignant {{l.enseignant}} de la classe {{l.classe}}
+                <a href="/groupetu/affiche_groupetu/{{l.id}}/">Revu</a>
+            <a href="/groupetu/update_groupetu/{{l.id}}/">Modifier</a>
+            <a href="/groupetu/delete_groupetu/{{l.id}}/">Supprimer</a>
+          </p>
+        </li>
+    {% endfor %}
+</ol>
+
+{% endblock %}
