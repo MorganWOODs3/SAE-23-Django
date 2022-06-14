@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema sae23mydb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema sae23mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `sae23mydb` DEFAULT CHARACTER SET utf8 ;
+USE `sae23mydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Groupes-etudiant`
+-- Table `sae23mydb`.`Groupes-etudiant`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Groupes-etudiant` (
+CREATE TABLE IF NOT EXISTS `sae23mydb`.`Groupes-etudiant` (
   `idGroupes-etudiant` INT NOT NULL AUTO_INCREMENT,
   `Nom` VARCHAR(45) NULL,
   PRIMARY KEY (`idGroupes-etudiant`))
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Etudiants`
+-- Table `sae23mydb`.`Etudiants`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Etudiants` (
+CREATE TABLE IF NOT EXISTS `sae23mydb`.`Etudiants` (
   `idEtudiants` INT NOT NULL AUTO_INCREMENT,
   `Nom` VARCHAR(45) NULL,
   `Prenom` VARCHAR(45) NULL,
@@ -38,19 +38,19 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Etudiants` (
   `Photo` LONGTEXT NULL,
   `groupes` INT NOT NULL,
   PRIMARY KEY (`idEtudiants`, `groupes`),
-  INDEX `group_idx` (`groupes` ASC) INVISIBLE,
+  INDEX `group_idx` (`groupes` ASC),
   CONSTRAINT `group`
     FOREIGN KEY (`groupes`)
-    REFERENCES `mydb`.`Groupes-etudiant` (`idGroupes-etudiant`)
+    REFERENCES `sae23mydb`.`Groupes-etudiant` (`idGroupes-etudiant`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Enseignants`
+-- Table `sae23mydb`.`Enseignants`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Enseignants` (
+CREATE TABLE IF NOT EXISTS `sae23mydb`.`Enseignants` (
   `idEnseignants` INT NOT NULL AUTO_INCREMENT,
   `Nom` VARCHAR(45) NULL,
   PRIMARY KEY (`idEnseignants`))
@@ -58,9 +58,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Cours`
+-- Table `sae23mydb`.`Cours`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Cours` (
+CREATE TABLE IF NOT EXISTS `sae23mydb`.`Cours` (
   `idCours` INT NOT NULL AUTO_INCREMENT,
   `titre cours` VARCHAR(100) NULL,
   `Date` DATETIME NULL,
@@ -68,25 +68,25 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Cours` (
   `Durée` TIME NULL,
   `Groupe` INT NOT NULL,
   PRIMARY KEY (`idCours`, `Groupe`, `enseignant`),
-  INDEX `enseignant_idx` (`enseignant` ASC) VISIBLE,
-  INDEX `group_idx` (`Groupe` ASC) VISIBLE,
+  INDEX `enseignant2_idx` (`enseignant` ASC) VISIBLE,
+  INDEX `group2_idx` (`Groupe` ASC) VISIBLE,
   CONSTRAINT `enseignant`
     FOREIGN KEY (`enseignant`)
-    REFERENCES `mydb`.`Enseignants` (`idEnseignants`)
+    REFERENCES `sae23mydb`.`Enseignants` (`idEnseignants`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `group`
+  CONSTRAINT `groupe`
     FOREIGN KEY (`Groupe`)
-    REFERENCES `mydb`.`Groupes-etudiant` (`idGroupes-etudiant`)
+    REFERENCES `sae23mydb`.`Groupes-etudiant` (`idGroupes-etudiant`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`absences`
+-- Table `sae23mydb`.`absences`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`absences` (
+CREATE TABLE IF NOT EXISTS `sae23mydb`.`absences` (
   `idabsences` INT NOT NULL,
   `Etudiant` INT NOT NULL,
   `Cours` INT NOT NULL,
@@ -97,12 +97,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`absences` (
   INDEX `cours_idx` (`Cours` ASC) VISIBLE,
   CONSTRAINT `etudiant`
     FOREIGN KEY (`Etudiant`)
-    REFERENCES `mydb`.`Etudiants` (`idEtudiants`)
+    REFERENCES `sae23mydb`.`Etudiants` (`idEtudiants`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `cours`
     FOREIGN KEY (`Cours`)
-    REFERENCES `mydb`.`Cours` (`idCours`)
+    REFERENCES `sae23mydb`.`Cours` (`idCours`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
