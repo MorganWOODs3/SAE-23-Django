@@ -102,7 +102,9 @@ article{
     text-align: center;
     color: #D3D3D3;
 }
-
+input{
+    margin-bottom:5%;
+}
 
 /*Voici donc mon css une peut difficile a commenter mais voila ca fonctionne c'est tout ce que je peux dire :) */
 

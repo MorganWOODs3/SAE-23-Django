@@ -3,14 +3,13 @@
 {% block content %}
     <a href="/cours/index_cours">Index</a>
     <a href="/cours/ajout_cours">Ajout</a>
-    <a href="/cours/affiche_cours">Liste</a>
 
 
 <h2><a href="/cours/ajout_cours/">Ajout d'un nouveau cours</a> </h2>
 <ol>
     {% for l in liste %}
-    <li> <p class="ti">Titre: {{l.titre}}</p>
-            <p>Dans le cours de {{l.titre}} à la date {{l.date}} d'une durée de {{l.duree}}, avec l'enseignant {{l.enseignant}} de la classe {{l.classe}}
+    <li> <p class="ti">Cours: {{l.titre}}</p>
+            <p>Cours de {{l.titre}} à la date {{l.date}}, avec l'enseignant {{l.enseignant}}, groupe {{l.classe}}
                 <a href="/cours/affiche_cours/{{l.id}}/">Revu</a>
             <a href="/cours/update_cours/{{l.id}}/">Modifier</a>
             <a href="/cours/delete_cours/{{l.id}}/">Supprimer</a>

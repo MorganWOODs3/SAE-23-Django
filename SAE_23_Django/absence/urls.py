@@ -38,7 +38,6 @@ urlpatterns = [
     path("etudiant/delete_etudiant/<int:id>/", views.delete_etudiant),
 
     path("groupetu/revu_groupetu/", views.revu_groupetu),
-    path('groupetu/affiche_groupetu/<int:id>/', views.affiche_groupetu),
     path('groupetu/ajout_groupetu/', views.ajout_groupetu),
     path('groupetu/index_groupetu/', views.index_groupetu),
     path("groupetu/update_groupetu/<int:id>/", views.update_groupetu),

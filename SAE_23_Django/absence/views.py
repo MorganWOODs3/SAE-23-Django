@@ -213,12 +213,6 @@ def ajout_groupetu(request):
         form = GroupetuForm()
         return render(request, "groupetu/ajout_groupetu.html", {"form": form})
 
-
-def affiche_groupetu(request, id):
-    groupetu = models.Groupetu.objects.get(pk=id)
-    return render(request, "groupetu/affiche_groupetu.html", {"groupetu": groupetu})
-
-
 def index_groupetu(request):
     liste = list(models.Groupetu.objects.all())
     return render(request, "groupetu/index_groupetu.html", {"liste": liste})
