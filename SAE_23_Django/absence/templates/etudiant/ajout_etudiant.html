@@ -5,20 +5,20 @@
 <a href="/etudiant/index_etudiant">Index</a>
     <a href="/etudiant/ajout_etudiant">Ajout</a>
 
-<h1>Saisie d'un nouveau cours </h1>
-<h2><a href="/etudiant/index_etudiant">Retour à la liste des cours</a> </h2>
+<h1>Saisie d'un nouveau etudiant</h1>
  <section>
     {% if id == None %}
         <form method="post" action="/etudiant/revu_etudiant/">
-     {% else %}
-       <form method="post" action="/etudiant/updaterevu_etudiant/{{id}}/">
-     {% endif %}
-    {% csrf_token%}
-    {{form.as_ul}}
+    {% else %}
+            <form method="post" action="/etudiant/updaterevu_etudiant/{{id}}/"> -->
+    {% endif %}
 
-      <input type="submit" value="envoyer les données"/>
-       </form>
-  </section>
+        {% csrf_token%}
+        {{ form.as_ul }}
+
+        <input type="submit" value="envoyer les données"/>
+    </form>
+ </section>
 
 {% endblock %}
 <!-- Voici ma page Ajout comme son nom l'indique, c'est pour ajouter un film. Et c'est tout.-->

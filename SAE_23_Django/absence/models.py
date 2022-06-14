@@ -25,37 +25,31 @@ class Absence(models.Model):
         return {"etudiant" : self.etudiant, "cours" : self.cours,"cat" : self.cat,"just" : self.just}
 
 
-group = [
-    ('RT111', 'RT111'),
-    ('RT112', 'RT112'),
-    ('RT121', 'RT122'),
-    ('RT131', 'RT132'),
-]
 
 class Etudiant(models.Model):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    group = models.CharField(max_length=30, choices=group)
     photo = models.CharField(max_length=100)
+    groupetu = models.ForeignKey("groupetu", on_delete= models.CASCADE, default=None)
 
 
     def __str__(self):
-        chaine = f"l'étudiant: {self.nom} {self.prenom} l'mail est :{self.email}, dans le groupe {self.group}"
+        chaine = f"l'étudiant: {self.nom} {self.prenom} l'mail est :{self.email}, dans le groupe {self.groupetu}"
         return chaine
 
     def dico(self):
-        return {"nom" : self.nom, "prenom" : self.prenom,"email" : self.email,"group" : self.group},{"photo" : self.photo}
+        return {"nom" : self.nom, "prenom" : self.prenom,"email" : self.email,"groupetu" : self.groupetu,"photo": self.photo}
 
 
 
 class Groupetu(models.Model):
-    groupe = models.CharField(max_length=100)
+    groupetu = models.CharField(max_length=100)
     def __str__(self):
-        chaine = f"{self.groupe}"
+        chaine = f"{self.groupetu}"
         return chaine
     def dico(self):
-        return {"classe": self.groupe}
+        return {"classe": self.groupetu}
 
 
 class Enseignant(models.Model):
@@ -75,14 +69,14 @@ class Cours(models.Model):
     titre = models.CharField(max_length=100)
     date = models.DateField(blank=True, null=True)
     duree = models.IntegerField(blank=False)
-    enseignant = models.CharField(max_length=100)
-    group = models.CharField(max_length=30, choices=group)
+    nom = models.ForeignKey("enseignant", on_delete=models.CASCADE, default=None)
+    groupetu = models.ForeignKey("groupetu", on_delete=models.CASCADE, default=None)
 
 
 
     def __str__(self):
-        chaine = f"titre du cours: {self.titre}le {self.date} d'une duree de {self.duree}, dans le groupe {self.group}"
+        chaine = f"titre du cours: {self.titre}le {self.date} d'une duree de {self.duree}, dans le groupe {self.groupetu}"
         return chaine
 
     def dico(self):
-        return {"titre" : self.titre, "date" : self.date,"duree" : self.duree,"classe" : self.group , "enseignant" : self.enseignant}
+        return {"titre": self.titre, "date": self.date, "duree": self.duree, "classe": self.groupetu, "nom": self.nom}

@@ -16,21 +16,21 @@ class AbsenceForm(ModelForm):
 class EtudiantForm(ModelForm):
     class Meta:
         model = models.Etudiant
-        fields = ('nom', 'prenom','email','group','photo',)
+        fields = ('nom','prenom','email','photo','groupetu',)
         labels = {
             'nom': _('Nom'),
-            'Prenom': _('Prenom'),
-            'Email': _('Email'),
-            'Group': _('Group'),
-            'Photo': _('Photo'),
+            'prenom': _('Prenom'),
+            'email': _('Email'),
+            'photo': _('Photo'),
+            'groupetu': _('Groupetu')
         }
 
 class GroupetuForm(ModelForm):
     class Meta:
         model = models.Groupetu
-        fields = ('groupe',)
+        fields = ('groupetu',)
         labels = {
-            'groupe': _('Groupe'),
+            'groupetu': _('Groupetu'),
 
         }
 class EnseignantForm(ModelForm):
@@ -46,11 +46,12 @@ class EnseignantForm(ModelForm):
 class CoursForm(ModelForm):
     class Meta:
         model = models.Cours
-        fields = ('titre', 'date','duree','enseignant','group',)
+        fields = ('titre', 'date','duree','nom','groupetu',)
         labels = {
             'titre': _('Titre'),
             'date': _('Date'),
             'duree': _('Duree'),
-            'enseignant': _('Enseignant'),
-            'group': _('Group'),
+            'nom': _('Enseignant'),
+            'grouptu': _('Grouptu'),
+
         }
