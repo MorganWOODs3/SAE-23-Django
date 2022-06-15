@@ -1,82 +1,94 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-# Create your models here.
-cat = [
-    ('Justifié', 'Justifié'),
-    ('Non Justifié', 'Non Justifié'),
-]
-
-class Absence(models.Model):
-    etudiant = models.CharField(max_length=100)
-    cours = models.CharField(max_length=100)
-    cat = models.CharField(max_length=30, choices=cat)
-    just = models.CharField(max_length=100)
-
-
-
-
-
-    def __str__(self):
-        chaine = f"l'étudiant: {self.etudiant} dans le ou les cours de : {self.cours}, l'absence est :{self.cat}, la " \
-                 f"justification est {self.just}. "
-        return chaine
-
-    def dico(self):
-        return {"etudiant" : self.etudiant, "cours" : self.cours,"cat" : self.cat,"just" : self.just}
-
-
-
-class Etudiant(models.Model):
-    nom = models.CharField(max_length=100)
-    prenom = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    photo = models.CharField(max_length=100)
-    groupetu = models.ForeignKey("groupetu", on_delete= models.CASCADE, default=None)
-
-
-    def __str__(self):
-        chaine = f"l'étudiant: {self.nom} {self.prenom} l'mail est :{self.email}, dans le groupe {self.groupetu}"
-        return chaine
-
-    def dico(self):
-        return {"nom" : self.nom, "prenom" : self.prenom,"email" : self.email,"groupetu" : self.groupetu,"photo": self.photo}
-
-
-
-class Groupetu(models.Model):
-    groupetu = models.CharField(max_length=100)
-    def __str__(self):
-        chaine = f"{self.groupetu}"
-        return chaine
-    def dico(self):
-        return {"classe": self.groupetu}
-
-
-class Enseignant(models.Model):
-    nom = models.CharField(max_length=100)
-    prenom = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-
-
-    def __str__(self):
-        chaine = f"l'enseignant: {self.nom} {self.prenom} l'mail est :{self.email}"
-        return chaine
-
-    def dico(self):
-        return {"nom": self.nom, "prenom": self.prenom, "email": self.email}
 
 class Cours(models.Model):
-    titre = models.CharField(max_length=100)
-    date = models.DateField(blank=True, null=True)
-    duree = models.IntegerField(blank=False)
-    nom = models.ForeignKey("enseignant", on_delete=models.CASCADE, default=None)
-    groupetu = models.ForeignKey("groupetu", on_delete=models.CASCADE, default=None)
+    idcours = models.AutoField(db_column='idCours', primary_key=True)  # Field name made lowercase.
+    titre_cours = models.CharField(db_column='titre cours', max_length=100, blank=True, null=True)  # Field renamed to remove unsuitable characters.
+    date = models.DateTimeField(db_column='Date', blank=True, null=True)  # Field name made lowercase.
+    enseignant = models.ForeignKey('Enseignants', models.DO_NOTHING, db_column='enseignant')
+    durée = models.TimeField(db_column='Durée', blank=True, null=True)  # Field name made lowercase.
+    groupe = models.ForeignKey('GroupesEtudiant', models.DO_NOTHING, db_column='Groupe')  # Field name made lowercase.
 
-
+    class Meta:
+        managed = False
+        db_table = 'Cours'
+        unique_together = (('idcours', 'groupe', 'enseignant'),)
 
     def __str__(self):
-        chaine = f"titre du cours: {self.titre}le {self.date} d'une duree de {self.duree}, dans le groupe {self.groupetu}"
+        chaine = f"Le cours : {self.titre_cours} le  {self.date} d'une durée de {self.durée} minutes avec l'enseignant {self.enseignant} dans le groupe {self.groupe}"
         return chaine
-
     def dico(self):
-        return {"titre": self.titre, "date": self.date, "duree": self.duree, "classe": self.groupetu, "nom": self.nom}
+        return {"idcours": self.idcours,"titre_cours": self.titre_cours,"date": self.date,"durée": self.durée,"enseignant": self.enseignant,"groupe": self.groupe,}
+
+class Enseignants(models.Model):
+    idenseignants = models.AutoField(db_column='idEnseignants', primary_key=True)  # Field name made lowercase.
+    nom = models.CharField(db_column='Nom', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    prenom = models.CharField(max_length=45, blank=True, null=True)
+    email = models.CharField(max_length=144, blank=True, null=True)
+
+    class Meta:
+            managed = False
+            db_table = 'Enseignants'
+
+    def __str__(self):
+        chaine = f"L'Enseignants : {self.nom} {self.prenom},l'email {self.email}"
+        return chaine
+    def dico(self):
+        return {"idenseignants": self.idenseignants,"nom": self.nom,"prenom": self.prenom,"email": self.email,}
+
+
+
+class Etudiants(models.Model):
+    idetudiants = models.AutoField(db_column='idEtudiants', primary_key=True)  # Field name made lowercase.
+    nom = models.CharField(db_column='Nom', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    prenom = models.CharField(db_column='Prenom', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    email = models.CharField(db_column='Email', max_length=144, blank=True, null=True)  # Field name made lowercase.
+    photo = models.TextField(db_column='Photo', blank=True, null=True)  # Field name made lowercase.
+    groupes = models.ForeignKey('GroupesEtudiant', models.DO_NOTHING, db_column='groupes')
+
+    class Meta:
+        managed = False
+        db_table = 'Etudiants'
+        unique_together = (('idetudiants', 'groupes'),)
+    def __str__(self):
+        chaine = f"L'étudiant : {self.nom} {self.prenom},l'email {self.email}, dans le groupe {self.groupes}"
+        return chaine
+    def dico(self):
+        return {"idetudiants": self.idetudiants,"nom": self.nom,"prenom": self.prenom,"email": self.email,"photo": self.photo,"groupes": self.groupes,}
+
+
+class GroupesEtudiant(models.Model):
+    idgroupes_etudiant = models.AutoField(db_column='idGroupes-etudiant', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    nom = models.CharField(db_column='Nom', max_length=45, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Groupes-etudiant'
+    def dico(self):
+        return {"idgroupe_etudiant": self.idgroupes_etudiant, "nom": self.nom}
+
+
+class Absences(models.Model):
+    idabsences = models.IntegerField(primary_key=True)
+    etudiant = models.ForeignKey(Etudiants, models.DO_NOTHING, db_column='Etudiant')  # Field name made lowercase.
+    cours = models.ForeignKey(Cours, models.DO_NOTHING, db_column='Cours')  # Field name made lowercase.
+    justification = models.TextField(blank=True, null=True)
+    justifie = models.CharField(max_length=7, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'absences'
+        unique_together = (('idabsences', 'etudiant', 'cours'),)
+    def __str__(self):
+        chaine = f"L'étudiant : {self.etudiant} dans le cours {self.cours}, l'absence est {self.justification}" \
+                 f"et la justification est {self.justifie}"
+        return chaine
+    def dico(self):
+        return {"idabsences": self.idabsences, "etudiant": self.etudiant, "cours": self.cours, "justification": self.justification, "justifie": self.justifie}

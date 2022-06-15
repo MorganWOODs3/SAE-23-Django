@@ -6,56 +6,56 @@ from django.shortcuts import render
 #################################################################
 
 from django.shortcuts import render, HttpResponseRedirect
-from. forms import AbsenceForm, CoursForm, EtudiantForm, EnseignantForm, GroupetuForm
+from. forms import AbsencesForm, CoursForm, EtudiantsForm, EnseignantsForm, GroupesEtudiantForm
 
 from . import models
 
 # Create your views here.
 def ajout(request):
     if request.method == "POST":
-        form = AbsenceForm(request)
+        form = AbsencesForm(request)
         return render(request, "absence/ajout.html", {"form": form})
     else :
-        form = AbsenceForm()
+        form = AbsencesForm()
         return render(request, "absence/ajout.html", {"form": form})
 
 def revu(request):
-    lform = AbsenceForm(request.POST)
+    lform = AbsencesForm(request.POST)
     if lform.is_valid():
-        absence = lform.save()
+        absences = lform.save()
         return HttpResponseRedirect("/absence/index")
     else :
         return render(request, "absence/ajout.html", {"form": lform})
 
 def centre(request):
-    liste = list(models.Absence.objects.all())
+    liste = list(models.Absences.objects.all())
     return render(request, "absence/centre.html", {"liste": liste})
 def index(request):
-    liste = list(models.Absence.objects.all())
+    liste = list(models.Absences.objects.all())
     return render(request, "absence/index.html", {"liste": liste})
 
 def affiche(request, id):
-    absence = models.Absence.objects.get( pk = id)
-    return render(request, "absence/affiche.html", {"absence": absence})
+    absences = models.Absences.objects.get( pk = id)
+    return render(request, "absence/affiche.html", {"absences": absences})
 
 def update(request, id):
-    absence = models.Absence.objects.get(pk=id)
-    form = AbsenceForm(absence.dico())
+    absences = models.Absences.objects.get(pk=id)
+    form = AbsencesForm(absences.dico())
     return render(request,"absence/ajout.html", {"form": form, "id": id})
 
 def updaterevu(request, id):
-    lform = AbsenceForm(request.POST)
+    lform = AbsencesForm(request.POST)
     if lform.is_valid():
-        absence = lform.save(commit = False)
-        absence.id = id
-        absence.save()
+        absences = lform.save(commit = False)
+        absences.id = id
+        absences.save()
         return HttpResponseRedirect("/absence/index")
     else:
         return render(request, "absence/ajout.html", {"form": lform, "id": id})
 
 def delete(request, id):
-    absence = models.Absence.objects.get(pk=id)
-    absence.delete()
+    absences = models.Absences.objects.get(pk=id)
+    absences.delete()
     return HttpResponseRedirect("/absence/index")
 
 ##############################################################################
@@ -107,75 +107,75 @@ def delete_cours(request, id):
 #############################################################################
 def ajout_enseignant(request):
     if request.method == "POST":
-        form = EnseignantForm(request)
+        form = EnseignantsForm(request)
         return render(request, "enseignant/ajout_enseignant.html", {"form": form})
     else:
-        form = EnseignantForm()
+        form = EnseignantsForm()
         return render(request, "enseignant/ajout_enseignant.html", {"form": form})
 
 
 def affiche_enseignant(request, id):
-    enseignant = models.Enseignant.objects.get(pk=id)
-    return render(request, "enseignant/affiche_enseignant.html", {"enseignant": enseignant})
+    enseignants = models.Enseignants.objects.get(pk=id)
+    return render(request, "enseignant/affiche_enseignant.html", {"enseignants": enseignants})
 
 
 def index_enseignant(request):
-    liste = list(models.Enseignant.objects.all())
+    liste = list(models.Enseignants.objects.all())
     return render(request, "enseignant/index_enseignant.html", {"liste": liste})
 
 def revu_enseignant(request):
-    lform = EnseignantForm(request.POST)
+    lform = EnseignantsForm(request.POST)
     if lform.is_valid():
-        enseignant = lform.save()
+        enseignants = lform.save()
         return HttpResponseRedirect("/enseignant/index_enseignant")
     else :
         return render(request, "enseignant/ajout_enseignant.html", {"form": lform})
 
 
 def update_enseignant(request, id):
-    enseignant = models.Enseignant.objects.get(pk=id)
-    form = EnseignantForm(enseignant.dico())
+    enseignants = models.Enseignants.objects.get(pk=id)
+    form = EnseignantsForm(enseignants.dico())
     return render(request,"enseignant/ajout_enseignant.html", {"form": form, "id": id})
 
 def updaterevu_enseignant(request, id):
-    lform = EnseignantForm(request.POST)
+    lform = EnseignantsForm(request.POST)
     if lform.is_valid():
-        enseignant = lform.save(commit = False)
-        enseignant.id = id
-        enseignant.save()
+        enseignants = lform.save(commit = False)
+        enseignants.id = id
+        enseignants.save()
         return HttpResponseRedirect("/enseignant/index_enseignant")
     else:
         return render(request, "enseignant/ajout_enseignant.html", {"form": lform, "id": id})
 
 def delete_enseignant(request, id):
-    enseignant = models.Enseignant.objects.get(pk=id)
-    enseignant.delete()
+    enseignants = models.Enseignants.objects.get(pk=id)
+    enseignants.delete()
     return HttpResponseRedirect("/enseignant/index_enseignant")
 
 
 ###############################################################################
 def ajout_etudiant(request):
     if request.method == "POST":
-        form = EtudiantForm(request)
+        form = EtudiantsForm(request)
         return render(request, "etudiant/ajout_etudiant.html", {"form": form})
     else:
-        form = EtudiantForm()
+        form = EtudiantsForm()
         return render(request, "etudiant/ajout_etudiant.html", {"form": form})
 
 
 def affiche_etudiant(request, id):
-    etudiant = models.Etudiant.objects.get(pk=id)
-    return render(request, "etudiant/affiche_etudiant.html", {"etudiant": etudiant})
+    etudiants = models.Etudiants.objects.get(pk=id)
+    return render(request, "etudiant/affiche_etudiant.html", {"etudiants": etudiants})
 
 
 def index_etudiant(request):
-    liste = list(models.Etudiant.objects.all())
+    liste = list(models.Etudiants.objects.all())
     return render(request, "etudiant/index_etudiant.html", {"liste": liste})
 
 def revu_etudiant(request):
-    lform = EtudiantForm(request.POST)
+    lform = EtudiantsForm(request.POST)
     if lform.is_valid():
-        etudiant = lform.save()
+        etudiants = lform.save()
         return HttpResponseRedirect("/etudiant/index_etudiant")
     else :
         return render(request, "etudiant/ajout_etudiant.html", {"form": lform})
@@ -183,23 +183,23 @@ def revu_etudiant(request):
 
 
 def update_etudiant(request, id):
-    etudiant = models.Etudiant.objects.get(pk=id)
-    form = EtudiantForm(etudiant.dico())
+    etudiants = models.Etudiants.objects.get(pk=id)
+    form = EtudiantsForm(etudiants.dico())
     return render(request,"etudiant/ajout_etudiant.html", {"form": form, "id": id})
 
 def updaterevu_etudiant(request, id):
-    lform = EtudiantForm(request.POST)
+    lform = EtudiantsForm(request.POST)
     if lform.is_valid():
-        etudiant = lform.save(commit = False)
-        etudiant.id = id
-        etudiant.save()
+        etudiants = lform.save(commit = False)
+        etudiants.id = id
+        etudiants.save()
         return HttpResponseRedirect("/etudiant/index_etudiant")
     else:
         return render(request, "etudiant/ajout_etudiant.html", {"form": lform, "id": id})
 
 def delete_etudiant(request, id):
-    etudiant = models.Etudiant.objects.get(pk=id)
-    etudiant.delete()
+    etudiants = models.Etudiants.objects.get(pk=id)
+    etudiants.delete()
     return HttpResponseRedirect("/etudiant/index_etudiant")
 
 ##############################################################################
@@ -207,41 +207,41 @@ def delete_etudiant(request, id):
 
 def ajout_groupetu(request):
     if request.method == "POST":
-        form = GroupetuForm(request)
+        form = GroupesEtudiantForm(request)
         return render(request, "groupetu/ajout_groupetu.html", {"form": form})
     else:
-        form = GroupetuForm()
+        form = GroupesEtudiantForm()
         return render(request, "groupetu/ajout_groupetu.html", {"form": form})
 
 def index_groupetu(request):
-    liste = list(models.Groupetu.objects.all())
+    liste = list(models.GroupesEtudiant.objects.all())
     return render(request, "groupetu/index_groupetu.html", {"liste": liste})
 
 def revu_groupetu(request):
-    lform = GroupetuForm(request.POST)
+    lform = GroupesEtudiantForm(request.POST)
     if lform.is_valid():
-        groupetu = lform.save()
+        groupetudiant = lform.save()
         return HttpResponseRedirect("/groupetu/index_groupetu")
     else :
         return render(request, "groupetu/ajout_groupetu.html", {"form": lform})
 
 def update_groupetu(request, id):
-    groupetu = models.Groupetu.objects.get(pk=id)
-    form = GroupetuForm(groupetu.dico())
+    groupetudiant = models.GroupesEtudiant.objects.get(pk=id)
+    form = GroupesEtudiantForm(groupetudiant.dico())
     return render(request,"groupetu/ajout_groupetu.html", {"form": form, "id": id})
 
 def updaterevu_groupetu(request, id):
-    lform = GroupetuForm(request.POST)
+    lform = GroupesEtudiantForm(request.POST)
     if lform.is_valid():
-        groupetu = lform.save(commit = False)
-        groupetu.id = id
-        groupetu.save()
+        groupetudiant = lform.save(commit = False)
+        groupetudiant.id = id
+        groupetudiant.save()
         return HttpResponseRedirect("/groupetu/index_groupetu")
     else:
         return render(request, "groupetu/ajout_groupetu.html", {"form": lform, "id": id})
 
 def delete_groupetu(request, id):
-    groupetu = models.Groupetu.objects.get(pk=id)
-    groupetu.delete()
+    groupetudiant = models.GroupesEtudiant.objects.get(pk=id)
+    groupetudiant.delete()
     return HttpResponseRedirect("/groupetu/index_groupetu")
 

@@ -2,42 +2,46 @@ from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 from . import models
 
-class AbsenceForm(ModelForm):
+class AbsencesForm(ModelForm):
     class Meta:
-        model = models.Absence
-        fields = ('etudiant', 'cours','cat','just',)
+        model = models.Absences
+        fields = ('idabsences', 'etudiant','cours','justification','justifie',)
         labels = {
-            'etudiant': _('Etudiant'),
-            'cours': _('Cours'),
-            'cat': _('Catégorie'),
-            'just': _('Justification'),
+            'idabsences': _('idabsences'),
+            'etudiant': _('etudiant'),
+            'cours': _('cours'),
+            'justification': _('justification'),
+            'justifie': _('justifie'),
         }
 
-class EtudiantForm(ModelForm):
+class EtudiantsForm(ModelForm):
     class Meta:
-        model = models.Etudiant
-        fields = ('nom','prenom','email','photo','groupetu',)
+        model = models.Etudiants
+        fields = ('idetudiants','nom','prenom','email','photo','groupes',)
         labels = {
+            'idetudiants': _('Idetudiants'),
             'nom': _('Nom'),
             'prenom': _('Prenom'),
             'email': _('Email'),
             'photo': _('Photo'),
-            'groupetu': _('Groupetu')
+            'groupes': _('Groupes')
         }
 
-class GroupetuForm(ModelForm):
+class GroupesEtudiantForm(ModelForm):
     class Meta:
-        model = models.Groupetu
-        fields = ('groupetu',)
+        model = models.GroupesEtudiant
+        fields = ('idgroupes_etudiant','nom')
         labels = {
-            'groupetu': _('Groupetu'),
+            'idgroupes_etudiant': _('idgroupes_etudiant'),
+            'nom': _('Nom'),
 
         }
-class EnseignantForm(ModelForm):
+class EnseignantsForm(ModelForm):
     class Meta:
-        model = models.Enseignant
-        fields = ('nom', 'prenom','email',)
+        model = models.Enseignants
+        fields = ('idenseignants', 'nom','prenom','email')
         labels = {
+            'idenseignants': _('Idenseignants'),
             'nom': _('Nom'),
             'prenom': _('Prenom'),
             'email': _('Email'),
@@ -46,12 +50,13 @@ class EnseignantForm(ModelForm):
 class CoursForm(ModelForm):
     class Meta:
         model = models.Cours
-        fields = ('titre', 'date','duree','nom','groupetu',)
+        fields = ('idcours', 'titre_cours','date','enseignant','durée','groupe',)
         labels = {
-            'titre': _('Titre'),
+            'idcours': _('Idcours'),
+            'titre_cours': _('Titre_cours'),
             'date': _('Date'),
-            'duree': _('Duree'),
-            'nom': _('Enseignant'),
-            'grouptu': _('Grouptu'),
+            'enseignant': _('Enseignant'),
+            'durée': _('Durée'),
+            'groupe': _('Groupe'),
 
         }
