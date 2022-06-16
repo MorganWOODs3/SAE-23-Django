@@ -10,9 +10,9 @@
 <ol>
     {% for l in liste %}
     <li> <p class="ti">Enseignant {{l.nom}} {{l.prenom}}
-                <a href="/enseignant/affiche_enseignant/{{l.id}}/">Revu</a>
-            <a href="/enseignant/update_enseignant/{{l.id}}/">Modifier</a>
-            <a href="/enseignant/delete_enseignant/{{l.id}}/">Supprimer</a>
+                <a href="/enseignant/affiche_enseignant/{{l.idenseignants}}/">Revu</a>
+            <a href="/enseignant/update_enseignant/{{l.idenseignants}}/">Modifier</a>
+            <a href="/enseignant/delete_enseignant/{{l.idenseignants}}/">Supprimer</a>
           </p>
         </li>
     {% endfor %}

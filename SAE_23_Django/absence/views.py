@@ -163,8 +163,8 @@ def ajout_etudiant(request):
         return render(request, "etudiant/ajout_etudiant.html", {"form": form})
 
 
-def affiche_etudiant(request, id):
-    etudiant = models.Etudiants.objects.get(pk=id)
+def affiche_etudiant(request, idetudiants):
+    etudiant = models.Etudiants.objects.get(pk=idetudiants)
     return render(request, "etudiant/affiche_etudiant.html", {"etudiant": etudiant})
 
 
@@ -182,23 +182,23 @@ def revu_etudiant(request):
 
 
 
-def update_etudiant(request, id):
-    etudiant = models.Etudiants.objects.get(pk=id)
+def update_etudiant(request, idetudiants):
+    etudiant = models.Etudiants.objects.get(pk=idetudiants)
     form = EtudiantsForm(etudiant.dico())
-    return render(request,"etudiant/ajout_etudiant.html", {"form": form, "id": id})
+    return render(request,"etudiant/ajout_etudiant.html", {"form": form, "idetudiants": idetudiants})
 
-def updaterevu_etudiant(request, id):
+def updaterevu_etudiant(request,idetudiants):
     lform = EtudiantsForm(request.POST)
     if lform.is_valid():
         etudiant = lform.save(commit = False)
-        etudiant.id = id
+        etudiant.idetudiants = idetudiants
         etudiant.save()
         return HttpResponseRedirect("/etudiant/index_etudiant")
     else:
-        return render(request, "etudiant/ajout_etudiant.html", {"form": lform, "id": id})
+        return render(request, "etudiant/ajout_etudiant.html", {"form": lform, "idetudiants": idetudiants})
 
-def delete_etudiant(request, id):
-    etudiant = models.Etudiants.objects.get(pk=id)
+def delete_etudiant(request, idetudiants):
+    etudiant = models.Etudiants.objects.get(pk=idetudiants)
     etudiant.delete()
     return HttpResponseRedirect("/etudiant/index_etudiant")
 
@@ -236,7 +236,7 @@ def updaterevu_groupetu(request, id):
         groupetu = lform.save(commit = False)
         groupetu.id = id
         groupetu.save()
-        return HttpResponseRedirect("/groupetu/index_groupetu")
+        return HttpResponseRedirect("/groupetu/ajout_groupetu")
     else:
         return render(request, "groupetu/ajout_groupetu.html", {"form": lform, "id": id})
 

@@ -10,7 +10,7 @@
     {% if id == None %}
         <form method="post" action="/etudiant/revu_etudiant/">
     {% else %}
-            <form method="post" action="/etudiant/updaterevu_etudiant/{{id}}/"> -->
+            <form method="post" action="/etudiant/updaterevu_etudiant/{{idetudiants}}/"> -->
     {% endif %}
 
         {% csrf_token%}
@@ -21,4 +21,3 @@
  </section>
 
 {% endblock %}
-<!-- Voici ma page Ajout comme son nom l'indique, c'est pour ajouter un film. Et c'est tout.-->

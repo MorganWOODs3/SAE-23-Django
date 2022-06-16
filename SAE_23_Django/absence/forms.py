@@ -17,9 +17,8 @@ class AbsencesForm(ModelForm):
 class EtudiantsForm(ModelForm):
     class Meta:
         model = models.Etudiants
-        fields = ('idetudiants','nom','prenom','email','photo','groupes',)
+        fields = ('nom','prenom','email','photo','groupes',)
         labels = {
-            'idetudiants': _('Idetudiants'),
             'nom': _('Nom'),
             'prenom': _('Prenom'),
             'email': _('Email'),

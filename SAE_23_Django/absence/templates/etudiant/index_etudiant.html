@@ -8,9 +8,9 @@
 <h1>Bienvenu dans la bibliothèque d'etudiant</h1>
 <ol>
     {% for l in liste %}
-    <li> <p class="ti">Etudiant: {{l.nom}} {{l.prenom}}, groupe : {{l.groupes}} <a href="/etudiant/affiche_etudiant/{{l.id}}/">Revu</a>
-            <a href="/etudiant/update_etudiant/{{l.id}}/">Modifier</a>
-            <a href="/etudiant/delete_etudiant/{{l.id}}/">Supprimer</a>
+    <li> <p class="ti">Etudiant: {{l.nom}} {{l.prenom}}, groupe : {{l.groupes}} <a href="/etudiant/affiche_etudiant/{{l.idetudiants}}/">Revu</a>
+            <a href="/etudiant/update_etudiant/{{l.idetudiants}}/">Modifier</a>
+            <a href="/etudiant/delete_etudiant/{{l.idetudiants}}/">Supprimer</a>
           </p>
         </li>
     {% endfor %}

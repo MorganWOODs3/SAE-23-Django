@@ -30,12 +30,12 @@ urlpatterns = [
     path("enseignant/delete_enseignant/<int:id>/", views.delete_enseignant),
 
     path("etudiant/revu_etudiant/", views.revu_etudiant),
-    path('etudiant/affiche_etudiant/<int:id>/', views.affiche_etudiant),
+    path('etudiant/affiche_etudiant/<int:idetudiants>/', views.affiche_etudiant),
     path('etudiant/ajout_etudiant/', views.ajout_etudiant),
     path('etudiant/index_etudiant/', views.index_etudiant),
-    path("etudiant/update_etudiant/<int:id>/", views.update_etudiant),
-    path("etudiant/updaterevu_etudiant/<int:id>/", views.updaterevu_etudiant),
-    path("etudiant/delete_etudiant/<int:id>/", views.delete_etudiant),
+    path("etudiant/update_etudiant/<int:idetudiants>/", views.update_etudiant),
+    path("etudiant/updaterevu_etudiant/<int:idetudiants>/", views.updaterevu_etudiant),
+    path("etudiant/delete_etudiant/<int:idetudiants>/", views.delete_etudiant),
 
     path("groupetu/revu_groupetu/", views.revu_groupetu),
     path('groupetu/ajout_groupetu/', views.ajout_groupetu),

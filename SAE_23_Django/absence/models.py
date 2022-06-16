@@ -61,6 +61,10 @@ class Etudiants(models.Model):
     def dico(self):
         return {"idetudiants": self.idetudiants,"nom": self.nom,"prenom": self.prenom,"email": self.email,"photo": self.photo,"groupes": self.groupes,}
 
+    def __str__(self):
+        chaine = f"{self.prenom}{self.nom}"
+        return chaine
+
 
 class GroupesEtudiant(models.Model):
     idgroupes_etudiant = models.AutoField(db_column='idGroupes-etudiant', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -71,6 +75,10 @@ class GroupesEtudiant(models.Model):
         db_table = 'Groupes-etudiant'
     def dico(self):
         return {"idgroupe_etudiant": self.idgroupes_etudiant, "nom": self.nom}
+
+    def __str__(self):
+        chaine = f"{self.nom}"
+        return chaine
 
 
 class Absences(models.Model):
