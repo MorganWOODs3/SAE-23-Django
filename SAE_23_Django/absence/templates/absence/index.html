@@ -8,8 +8,8 @@
 
 <ol>
     {% for l in liste %}
-    <li> <p class="ti">Absence de : {{l.etudiant}}</p>
-            <p>L'élève {{l.etudiant}} dans le cours de {{l.cours}}, l'abense est {{l.cat}}
+    <li> <p class="ti">{{l.etudiant}} {{l.cours}} {{l.justifie}}  </p>
+
 
             <a href="/absence/affiche/{{l.id}}/">Revu</a>
             <a href="/absence/update/{{l.id}}/">Modifier</a>

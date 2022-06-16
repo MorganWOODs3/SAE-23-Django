@@ -164,8 +164,8 @@ def ajout_etudiant(request):
 
 
 def affiche_etudiant(request, id):
-    etudiants = models.Etudiants.objects.get(pk=id)
-    return render(request, "etudiant/affiche_etudiant.html", {"etudiants": etudiants})
+    etudiant = models.Etudiants.objects.get(pk=id)
+    return render(request, "etudiant/affiche_etudiant.html", {"etudiant": etudiant})
 
 
 def index_etudiant(request):
@@ -175,7 +175,7 @@ def index_etudiant(request):
 def revu_etudiant(request):
     lform = EtudiantsForm(request.POST)
     if lform.is_valid():
-        etudiants = lform.save()
+        etudiant = lform.save()
         return HttpResponseRedirect("/etudiant/index_etudiant")
     else :
         return render(request, "etudiant/ajout_etudiant.html", {"form": lform})
@@ -183,23 +183,23 @@ def revu_etudiant(request):
 
 
 def update_etudiant(request, id):
-    etudiants = models.Etudiants.objects.get(pk=id)
-    form = EtudiantsForm(etudiants.dico())
+    etudiant = models.Etudiants.objects.get(pk=id)
+    form = EtudiantsForm(etudiant.dico())
     return render(request,"etudiant/ajout_etudiant.html", {"form": form, "id": id})
 
 def updaterevu_etudiant(request, id):
     lform = EtudiantsForm(request.POST)
     if lform.is_valid():
-        etudiants = lform.save(commit = False)
-        etudiants.id = id
-        etudiants.save()
+        etudiant = lform.save(commit = False)
+        etudiant.id = id
+        etudiant.save()
         return HttpResponseRedirect("/etudiant/index_etudiant")
     else:
         return render(request, "etudiant/ajout_etudiant.html", {"form": lform, "id": id})
 
 def delete_etudiant(request, id):
-    etudiants = models.Etudiants.objects.get(pk=id)
-    etudiants.delete()
+    etudiant = models.Etudiants.objects.get(pk=id)
+    etudiant.delete()
     return HttpResponseRedirect("/etudiant/index_etudiant")
 
 ##############################################################################
@@ -220,28 +220,28 @@ def index_groupetu(request):
 def revu_groupetu(request):
     lform = GroupesEtudiantForm(request.POST)
     if lform.is_valid():
-        groupetudiant = lform.save()
+        groupetu = lform.save()
         return HttpResponseRedirect("/groupetu/index_groupetu")
     else :
         return render(request, "groupetu/ajout_groupetu.html", {"form": lform})
 
 def update_groupetu(request, id):
-    groupetudiant = models.GroupesEtudiant.objects.get(pk=id)
-    form = GroupesEtudiantForm(groupetudiant.dico())
+    groupetu = models.GroupesEtudiant.objects.get(pk=id)
+    form = GroupesEtudiantForm(groupetu.dico())
     return render(request,"groupetu/ajout_groupetu.html", {"form": form, "id": id})
 
 def updaterevu_groupetu(request, id):
     lform = GroupesEtudiantForm(request.POST)
     if lform.is_valid():
-        groupetudiant = lform.save(commit = False)
-        groupetudiant.id = id
-        groupetudiant.save()
+        groupetu = lform.save(commit = False)
+        groupetu.id = id
+        groupetu.save()
         return HttpResponseRedirect("/groupetu/index_groupetu")
     else:
         return render(request, "groupetu/ajout_groupetu.html", {"form": lform, "id": id})
 
 def delete_groupetu(request, id):
-    groupetudiant = models.GroupesEtudiant.objects.get(pk=id)
-    groupetudiant.delete()
+    groupetu = models.GroupesEtudiant.objects.get(pk=id)
+    groupetu.delete()
     return HttpResponseRedirect("/groupetu/index_groupetu")
 

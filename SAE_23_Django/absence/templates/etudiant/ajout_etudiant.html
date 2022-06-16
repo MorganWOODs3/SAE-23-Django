@@ -14,7 +14,7 @@
     {% endif %}
 
         {% csrf_token%}
-        {{ form.as_ul }}
+        {{ form.as_p }}
 
         <input type="submit" value="envoyer les données"/>
     </form>

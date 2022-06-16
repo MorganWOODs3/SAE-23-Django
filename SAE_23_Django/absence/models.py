@@ -57,9 +57,7 @@ class Etudiants(models.Model):
         managed = False
         db_table = 'Etudiants'
         unique_together = (('idetudiants', 'groupes'),)
-    def __str__(self):
-        chaine = f"L'étudiant : {self.nom} {self.prenom},l'email {self.email}, dans le groupe {self.groupes}"
-        return chaine
+
     def dico(self):
         return {"idetudiants": self.idetudiants,"nom": self.nom,"prenom": self.prenom,"email": self.email,"photo": self.photo,"groupes": self.groupes,}
 

@@ -5,11 +5,11 @@
     <a href="/groupetu/ajout_groupetu">Ajout</a>
 
 
-<h1>Bienvenu dans la bibliothèque de groupe d'etudiant</h1>
+<h1>Bienvenue dans la bibliothèque de groupe d'etudiant</h1>
 <ol>
     {% for l in liste %}
-    <li> <p class="ti">
-        Groupe : {{l.groupetu}}
+    <li> <p>
+        Groupe : {{l.nom}}
         <a href="/groupetu/update_groupetu/{{l.id}}/">Modifier</a>
         <a href="/groupetu/delete_groupetu/{{l.id}}/">Supprimer</a>
         </p>
