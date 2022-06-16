@@ -5,9 +5,8 @@ from . import models
 class AbsencesForm(ModelForm):
     class Meta:
         model = models.Absences
-        fields = ('idabsences', 'etudiant','cours','justification','justifie',)
+        fields = ('etudiant','cours','justification','justifie',)
         labels = {
-            'idabsences': _('idabsences'),
             'etudiant': _('etudiant'),
             'cours': _('cours'),
             'justification': _('justification'),
@@ -29,18 +28,15 @@ class EtudiantsForm(ModelForm):
 class GroupesEtudiantForm(ModelForm):
     class Meta:
         model = models.GroupesEtudiant
-        fields = ('idgroupes_etudiant','nom')
+        fields = ('nom',)
         labels = {
-            'idgroupes_etudiant': _('idgroupes_etudiant'),
-            'nom': _('Nom'),
-
+            'nom': _('Nom')
         }
 class EnseignantsForm(ModelForm):
     class Meta:
         model = models.Enseignants
-        fields = ('idenseignants', 'nom','prenom','email')
+        fields = ('nom','prenom','email')
         labels = {
-            'idenseignants': _('Idenseignants'),
             'nom': _('Nom'),
             'prenom': _('Prenom'),
             'email': _('Email'),
@@ -49,9 +45,8 @@ class EnseignantsForm(ModelForm):
 class CoursForm(ModelForm):
     class Meta:
         model = models.Cours
-        fields = ('idcours', 'titre_cours','date','enseignant','durée','groupe',)
+        fields = ('titre_cours','date','enseignant','durée','groupe',)
         labels = {
-            'idcours': _('Idcours'),
             'titre_cours': _('Titre_cours'),
             'date': _('Date'),
             'enseignant': _('Enseignant'),

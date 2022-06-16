@@ -7,10 +7,10 @@
 <h1>Saisie d'une nouvelle absence </h1>
 <h2><a href="/absence/index">Retour à la Bibliothèque des absences</a> </h2>
  <section>
-    {% if id == None %}
+    {% if idabsences == None %}
         <form method="post" action="/absence/revu/">
      {% else %}
-       <form method="post" action="/absence/updaterevu/{{id}}/">
+       <form method="post" action="/absence/updaterevu/{{idabsences}}/">
      {% endif %}
     {% csrf_token%}
     {{form.as_p}}

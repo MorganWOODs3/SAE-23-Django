@@ -9,10 +9,10 @@
 <h1>Saisie d'un nouveau cours </h1>
 <h2><a href="/cours/index_cours">Retour à la liste des cours</a> </h2>
  <section>
-    {% if id == None %}
+    {% if idcours == None %}
         <form method="post" action="/cours/revu_cours/">
      {% else %}
-       <form method="post" action="/cours/updaterevu_cours/{{id}}/">
+       <form method="post" action="/cours/updaterevu_cours/{{idcours}}/">
      {% endif %}
     {% csrf_token%}
     {{form.as_ul}}

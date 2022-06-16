@@ -9,10 +9,10 @@
 <h1>Saisie d'un nouveau cours </h1>
 <h2><a href="/groupetu/index_groupetu">Retour à la liste des cours</a> </h2>
  <section>
-    {% if id == None %}
+    {% if idgroupes_etudiant == None %}
         <form method="post" action="/groupetu/revu_groupetu/">
      {% else %}
-       <form method="post" action="/cours/updaterevu_groupetu/{{id}}/">
+       <form method="post" action="/cours/updaterevu_groupetu/{{idgroupes_etudiant}}/">
      {% endif %}
     {% csrf_token%}
     {{form.as_p}}

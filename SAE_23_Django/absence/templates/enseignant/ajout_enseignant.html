@@ -8,10 +8,10 @@
 <h1>Saisie d'un nouveau enseignant </h1>
 
  <section>
-    {% if id == None %}
+    {% if idenseignants == None %}
         <form method="post" action="/enseignant/revu_enseignant/">
      {% else %}
-       <form method="post" action="/enseignant/updaterevu_enseignant/{{id}}/">
+       <form method="post" action="/enseignant/updaterevu_enseignant/{{idenseignants}}/">
      {% endif %}
     {% csrf_token%}
     {{form.as_p}}
