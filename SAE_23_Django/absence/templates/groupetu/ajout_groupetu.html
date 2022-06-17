@@ -12,7 +12,7 @@
     {% if idgroupes_etudiant == None %}
         <form method="post" action="/groupetu/revu_groupetu/">
      {% else %}
-       <form method="post" action="/cours/updaterevu_groupetu/{{idgroupes_etudiant}}/">
+       <form method="post" action="/groupetu/updaterevu_groupetu/{{idgroupes_etudiant}}/">
      {% endif %}
     {% csrf_token%}
     {{form.as_p}}

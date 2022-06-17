@@ -236,7 +236,7 @@ def updaterevu_groupetu(request,idgroupes_etudiant):
         groupetu = lform.save(commit = False)
         groupetu.idgroupes_etudiant = idgroupes_etudiant
         groupetu.save()
-        return HttpResponseRedirect("/groupetu/ajout_groupetu")
+        return HttpResponseRedirect("/groupetu/index_groupetu")
     else:
         return render(request, "groupetu/ajout_groupetu.html", {"form": lform, "idgroupes_etudiant": idgroupes_etudiant})
 

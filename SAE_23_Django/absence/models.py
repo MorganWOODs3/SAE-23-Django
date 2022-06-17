@@ -50,7 +50,7 @@ class Etudiants(models.Model):
     nom = models.CharField(db_column='Nom', max_length=45, blank=True, null=True)  # Field name made lowercase.
     prenom = models.CharField(db_column='Prenom', max_length=45, blank=True, null=True)  # Field name made lowercase.
     email = models.CharField(db_column='Email', max_length=144, blank=True, null=True)  # Field name made lowercase.
-    photo = models.TextField(db_column='Photo', blank=True, null=True)  # Field name made lowercase.
+    photo = models.URLField(db_column='Photo', blank=True, null=True)  # Field name made lowercase.
     groupes = models.ForeignKey('GroupesEtudiant', models.DO_NOTHING, db_column='groupes')
 
     class Meta:
