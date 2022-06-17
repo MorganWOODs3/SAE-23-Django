@@ -74,7 +74,7 @@ class GroupesEtudiant(models.Model):
         managed = False
         db_table = 'Groupes-etudiant'
     def dico(self):
-        return f"{self.idgroupes_etudiant,self.nom}"
+        return {"id.groupes_etudiant": self.idgroupes_etudiant, "nom": self.nom}
 
     def __str__(self):
         chaine = f"{self.nom}"
