@@ -14,7 +14,7 @@ class Cours(models.Model):
     date = models.DateTimeField(db_column='Date', blank=True, null=True)  # Field name made lowercase.
     enseignant = models.ForeignKey('Enseignants', models.DO_NOTHING, db_column='enseignant')
     durée = models.TimeField(db_column='Durée', blank=True, null=True)  # Field name made lowercase.
-    groupe = models.ForeignKey('GroupesEtudiant', models.DO_NOTHING, db_column='Groupe')  # Field name made lowercase.
+    groupe = models.ForeignKey('GroupesEtudiant', db_column='Groupe', on_delete= models.CASCADE)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -51,7 +51,7 @@ class Etudiants(models.Model):
     prenom = models.CharField(db_column='Prenom', max_length=45, blank=True, null=True)  # Field name made lowercase.
     email = models.CharField(db_column='Email', max_length=144, blank=True, null=True)  # Field name made lowercase.
     photo = models.URLField(db_column='Photo', blank=True, null=True)  # Field name made lowercase.
-    groupes = models.ForeignKey('GroupesEtudiant', models.DO_NOTHING, db_column='groupes')
+    groupes = models.ForeignKey('GroupesEtudiant', db_column='groupes', on_delete= models.CASCADE)
 
     class Meta:
         managed = False
@@ -59,10 +59,10 @@ class Etudiants(models.Model):
         unique_together = (('idetudiants', 'groupes'),)
 
     def dico(self):
-        return {"idetudiants": self.idetudiants,"nom": self.nom,"prenom": self.prenom,"email": self.email,"photo": self.photo,"groupes": self.groupes,}
+        return {"idetudiants": self.idetudiants,"nom": self.nom,"prenom": self.prenom,"email": self.email,"groupes": self.groupes,"photo": self.photo}
 
     def __str__(self):
-        chaine = f"{self.prenom}{self.nom}"
+        chaine = f"{self.prenom}.{self.nom}"
         return chaine
 
 
@@ -74,7 +74,7 @@ class GroupesEtudiant(models.Model):
         managed = False
         db_table = 'Groupes-etudiant'
     def dico(self):
-        return {"idgroupe_etudiant": self.idgroupes_etudiant, "nom": self.nom}
+        return f"{self.idgroupes_etudiant,self.nom}"
 
     def __str__(self):
         chaine = f"{self.nom}"
@@ -83,8 +83,8 @@ class GroupesEtudiant(models.Model):
 
 class Absences(models.Model):
     idabsences = models.IntegerField(primary_key=True)
-    etudiant = models.ForeignKey(Etudiants, models.DO_NOTHING, db_column='Etudiant')  # Field name made lowercase.
-    cours = models.ForeignKey(Cours, models.DO_NOTHING, db_column='Cours')  # Field name made lowercase.
+    etudiant = models.ForeignKey(Etudiants, db_column='Etudiant', on_delete= models.CASCADE)  # Field name made lowercase.
+    cours = models.ForeignKey(Cours, db_column='Cours', on_delete= models.CASCADE)  # Field name made lowercase.
     justification = models.TextField(blank=True, null=True)
     justifie = models.CharField(max_length=7, blank=True, null=True)
 
@@ -93,7 +93,7 @@ class Absences(models.Model):
         db_table = 'absences'
         unique_together = (('idabsences', 'etudiant', 'cours'),)
     def __str__(self):
-        chaine = f"L'étudiant : {self.etudiant} dans le cours {self.cours}, l'absence est {self.justification}" \
+        chaine = f"L'étudiant : {self.etudiant} dans {self.cours}, l'absances et justifie ? {self.justification}" \
                  f"et la justification est {self.justifie}"
         return chaine
     def dico(self):

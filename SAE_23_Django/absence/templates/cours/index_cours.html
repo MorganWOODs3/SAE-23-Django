@@ -7,8 +7,8 @@
 <h1>Bienvenu dans la bibliothèque de cours</h1>
 <ol>
     {% for l in liste %}
-    <li> <p class="ti">Cours: {{l.titre}}</p>
-            <p>Cours de {{l.titre}} à la date {{l.date}}, avec l'enseignant {{l.enseignant}}, groupe {{l.classe}}
+    <li> <p class="ti">Cours: {{l.titre_cours}}</p>
+            <p>Cours de {{l.titre_cours}} à la date {{l.date}}, avec l'enseignant {{l.enseignant}}, groupe {{l.classe}}
                 <a href="/cours/affiche_cours/{{l.idcours}}/">Revu</a>
             <a href="/cours/update_cours/{{l.idcours}}/">Modifier</a>
             <a href="/cours/delete_cours/{{l.idcours}}/">Supprimer</a>

@@ -53,8 +53,8 @@ def updaterevu(request, idabsences):
     else:
         return render(request, "absence/ajout.html", {"form": lform, "idabsences": idabsences})
 
-def delete(request, id):
-    absences = models.Absences.objects.get(pk=id)
+def delete(request, idabsences):
+    absences = models.Absences.objects.get(pk=idabsences)
     absences.delete()
     return HttpResponseRedirect("/absence/index")
 
